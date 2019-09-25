@@ -1,3 +1,4 @@
+//will handle all physics creating the game world and any other non-graphical features.
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 var ballRadius = 10;
@@ -55,6 +56,7 @@ var relativeX = e.clientX - canvas.offsetLeft;
 if(relativeX > 0 && relativeX < canvas.width) {
   paddleX = relativeX - paddleWidth/2;
 }
+
 }
 function collisionDetection() {
 for(var c=0; c<brickColumnCount; c++) {
