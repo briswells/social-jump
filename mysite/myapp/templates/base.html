@@ -1,22 +1,20 @@
-</<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>{{title}}</title>
-  </head>
-  <body>
-    {{var}}
-    <ul>
-      {% for o in some_list%}
-      <li>{{o}}</li>
-      {% endfor %}
-    </ul>
-  </body>
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Block Breaker Game</title>
+    <style>
+    	* { padding: 0; margin: 0; }
+    	canvas { background: #eee; display: block; margin: 0 auto; }
+    </style>
+</head>
+<body>
+
+<canvas id="myCanvas" width="480" height="320"></canvas>
+
+<script type="text/javascript" src="{% static "js/game.js" %}"></script>
+
+</body>
 </html>
-<!--
-uniTicket:
-ticket system for multibe websites, users can add new websites, shows tickets submitted for websites,
-user plugs in url and website tries to create a template then verifies if it matches. HARD TO TEST
-
-
--->
