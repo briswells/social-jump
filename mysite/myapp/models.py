@@ -26,7 +26,7 @@ class comments(models.Model):
     ID = models.ForeignKey(
         userContent, on_delete=models.CASCADE)#maybe just use Djangos pre built one, pk/fk
     comment = models.CharField(max_length=1000)
-    date = models.DateTimeField()
+    date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)#FK
 
 class messageTread(models.Model):
