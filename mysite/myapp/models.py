@@ -30,12 +30,12 @@ class comments(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)#FK
 
 class messageTread(models.Model):
-    participants = models.ForeignKey(
-        User, on_delete=models.CASCADE)  #people in thread dictionary, names to user ID
+    participants = models.ManyToManyField(
+        User)  #people in thread dictionary, names to user ID
     threadName = models.CharField(max_length=100)
 
 class message(models.Model):
-    ID = models.ForeignKey(
+    threadID = models.ForeignKey(
         messageTread, on_delete=models.CASCADE)#maybe just use Djangos pre built one, pk/fk
     message = models.CharField(max_length=1000)
     image = models.ImageField(
