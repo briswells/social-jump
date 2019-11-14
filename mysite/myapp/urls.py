@@ -19,6 +19,7 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('', views.index),
-    path('test/', views.test)
+    path('', views.index, name='index'),
+    path('test/', views.test),
+    path('<str:room_name>/',views.room,name='room'),
 ]
