@@ -6,7 +6,7 @@ import json
 # Create your views here.
 
 def index(request):
-    return render(request,'chat/index.html',{})
+    return render(request,'home.html',{})
 
 def test(request):
     context={

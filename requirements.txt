@@ -6,3 +6,4 @@ channels
 channels_redis
 django-redis
 asgiref==2.3.0
+selenium
