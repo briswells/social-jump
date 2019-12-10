@@ -53,3 +53,4 @@ class gameStats(models.Model):
     time = models.DateTimeField(auto_now_add=True)
     score = models.IntegerField()
     timeJumped = models.IntegerField()
+
