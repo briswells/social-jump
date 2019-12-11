@@ -1,10 +1,14 @@
+
+
 from django import forms
 from django.core.validators import validate_slug
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+
 import datetime
 from . import models
 
+class UserRegistrationForm(UserCreationForm):
 
 class postForm(forms.Form):
     post = forms.CharField(label='Post', max_length=240, validators=[validate_slug])
@@ -37,6 +41,7 @@ class postForm(forms.Form):
 #         return new_comm
 
 class RegistrationForm(UserCreationForm):
+
     email = forms.EmailField(
         label="Email",
         required=True
@@ -48,8 +53,14 @@ class RegistrationForm(UserCreationForm):
                   "password1", "password2")
 
     def save(self, commit=True):
-        user = super(RegistrationForm, self).save(commit=False)
+
+        user = super(UserRegistrationForm, self).save(commit=False)
+
         user.email = self.cleaned_data["email"]
         if commit:
             user.save()
         return user
+
+
+class PersonalInfoForm(forms.Form):
+    name = forms.CharField(label='Name', max_length=240)

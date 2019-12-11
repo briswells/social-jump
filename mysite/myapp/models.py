@@ -9,13 +9,13 @@ class userExpanded(models.Model): #Adds on to default user class
     # roles = #some type
     gameSprite = models.ImageField(
         max_length=144,
-        upload_to='content/spites/%user')
+        upload_to='content/spites/%user',default = 'test'))
     Darkmode = models.BooleanField()
 
 class userContent(models.Model): #A social feed post
     author = models.ForeignKey(
         User, on_delete=models.CASCADE)#FK from pre built user class
-    post = models.CharField(max_length=500)#
+    post = models.CharField(max_length=500, ,default ='test')#
     image = models.ImageField(
         max_length=144,
         upload_to='content/images/%Y/%m/%d/')
@@ -28,23 +28,24 @@ class userContent(models.Model): #A social feed post
 class comments(models.Model):
     ID = models.ForeignKey(
         userContent, on_delete=models.CASCADE)#maybe just use Djangos pre built one, pk/fk
-    comment = models.CharField(max_length=1000)
+    comment = models.CharField(max_length=1000,default='test')
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)#FK
 
 class messageTread(models.Model):
     participants = models.ManyToManyField(
         User)  #people in thread dictionary, names to user ID
-    threadName = models.CharField(max_length=100)
+    threadName = models.CharField(max_length=100,default='test')
 
 class message(models.Model):
     threadID = models.ForeignKey(
-        messageTread, on_delete=models.CASCADE) #maybe just use Djangos pre built one, pk/fk
-    message = models.CharField(max_length=1000)
+        messageTread, on_delete=models.CASCADE)#maybe just use Djangos pre built one, pk/fk
+    message = models.CharField(max_length=1000,default='test')
     image = models.ImageField(
         max_length=144,
-        upload_to='content/images/%Y/%m/%d/')
-    image_description = models.CharField(max_length=240)
+        upload_to='content/images/%Y/%m/%d/',
+        default='test')
+    image_description = models.CharField(max_length=240,default='test')
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)#FK
 
@@ -56,3 +57,4 @@ class gameStats(models.Model):
     time = models.DateTimeField(auto_now_add=True)
     score = models.IntegerField()
     timeJumped = models.IntegerField()
+

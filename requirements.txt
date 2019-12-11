@@ -2,3 +2,8 @@ Django==2.2.5
 pytz==2019.2
 sqlparse==0.3.0
 Pillow
+channels
+channels_redis
+django-redis
+asgiref==2.3.0
+selenium

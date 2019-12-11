@@ -2,10 +2,19 @@
 version: '3.6'
 
 services:
+  redis:
+    image: redis
+    expose:
+      - 6379
+
   web:
     build: .
+   # depends_on: redis
     volumes:
        - .:/code
+    links:
+       - redis
     ports:
        - 8000:8000
     command: python /code/mysite/manage.py runserver 0.0.0.0:8000
+
