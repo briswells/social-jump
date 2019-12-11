@@ -9,20 +9,21 @@ class userExpanded(models.Model): #Adds on to default user class
     # roles = #some type
     gameSprite = models.ImageField(
         max_length=144,
-        upload_to='uploads/%Y/%m/%d/',
-        default = 'test')
+        upload_to='content/spites/%user',default = 'test'))
     Darkmode = models.BooleanField()
 
 class userContent(models.Model): #A social feed post
-    username = models.ForeignKey(
+    author = models.ForeignKey(
         User, on_delete=models.CASCADE)#FK from pre built user class
-    message = models.CharField(max_length=500,default ='test')#
+    post = models.CharField(max_length=500, ,default ='test')#
     image = models.ImageField(
         max_length=144,
-        upload_to='uploads/%Y/%m/%d/',
-        default='test')
-    image_description = models.CharField(max_length=240,default='tests')
+        upload_to='content/images/%Y/%m/%d/')
+    image_description = models.CharField(max_length=240)
     date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.author.username + " " + self.post
 
 class comments(models.Model):
     ID = models.ForeignKey(
@@ -42,11 +43,14 @@ class message(models.Model):
     message = models.CharField(max_length=1000,default='test')
     image = models.ImageField(
         max_length=144,
-        upload_to='uploads/%Y/%m/%d/',
+        upload_to='content/images/%Y/%m/%d/',
         default='test')
     image_description = models.CharField(max_length=240,default='test')
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)#FK
+
+    def __str__(self):
+        return self.author.username + " " + self.comment
 
 class gameStats(models.Model):
     models.ForeignKey(User, on_delete=models.CASCADE)#FK from pre built user class
