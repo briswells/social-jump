@@ -1,7 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title>Social Jump</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -164,6 +164,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                     var backgroundY = 0;
                     var backgroundX = 0;
                     var tick = 0;
+                    var score = 0;
                     // the scroll speed
                     // an important thing to ensure here is that can.width
                     // is divisible by scrollSpeed
@@ -177,6 +178,8 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                         ctx.drawImage(background, backgroundX + can.width, backgroundY);
                         ctx.drawImage(background, backgroundX, backgroundY);
                         runner(tick, xPos, yPos);
+                        drawScore(score);
+
                         // draw image 1
 
                         // draw image 2
@@ -189,8 +192,10 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                         if (backgroundX == -735)
                             backgroundX =  0;
 
+
                         if(tick == 16){
                           tick = 0;
+                          ++score;
                         }
 
                         // this function creates a 60fps animation by scheduling a
@@ -198,12 +203,19 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
                         // next redraw every time it is called
                         window.requestAnimationFrame(loop);
                     }
-
+                    if(score != 999){
+                      loop();
+                    }
                     // this initiates the animation by calling the loop function
                     // for the first time
-                    loop();
 
 
+
+                }
+                function drawScore(score) {
+                  ctx.font = "24px Arial";
+                  ctx.fillStyle = "#FFFFFF";
+                  ctx.fillText("Score: "+score, 610, 45);
                 }
 
                 function runner(tick, xPos, yPos){
@@ -221,13 +233,10 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
           </div>
         </div>
       </div>
-      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-          <p>{{variable}}</p>
-      </div>
       {% for content in post_list %}
       <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+          <p>{{content.author}}</p>
           <p>{{content.post}}</p>
-          <p>testing 123</p>
       </div>
       {% endfor %}
       <!-- <div class="w3-container w3-card w3-white w3-round w3-margin"><br> -->
