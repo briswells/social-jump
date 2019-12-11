@@ -15,10 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [
     path('', views.index),
-    path('test/', views.test)
+    path('test/', views.test),
+    path('game/', views.game),
+    path('contents/', views.contents_view),
+    path('register/', views.register),
+    path('login/',auth_views.LoginView.as_view()),
+    path('logout/',views.logout_view),
+    # path('content/', views.content_form_view),
+    # path('comment/<int:instance_id>/', views.comments_view),
+    # path('comment/<int:instance_id>/<int:delete>/', views.comments_view),
 ]
