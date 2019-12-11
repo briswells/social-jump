@@ -128,14 +128,14 @@ def room(request,room_name):
 
 def register(request):
     if request.method == 'POST':
-        form = forms.UserRegistrationForm(request.POST)
-        if form.is_valid():
-           form.save()
+        register_form = forms.RegistrationForm(request.POST)
+        if register_form.is_valid():
+           register_form.save()
            return redirect("/login/")
     else:
-        form = forms.UserRegistrationForm()
+        register_form = forms.RegistrationForm()
     context = {
-        "form":form,
+        "form":register_form,
     }
     return render(request,'registration/register.html',context=context)
 

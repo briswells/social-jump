@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 import datetime
 from . import models
 
-class UserRegistrationForm(UserCreationForm):
+# class UserRegistrationForm(UserCreationForm):
 
 class postForm(forms.Form):
     post = forms.CharField(label='Post', max_length=240, validators=[validate_slug])
@@ -53,8 +53,8 @@ class RegistrationForm(UserCreationForm):
                   "password1", "password2")
 
     def save(self, commit=True):
-
-        user = super(UserRegistrationForm, self).save(commit=False)
+        
+        user = super(RegistrationForm, self).save(commit=False)
 
         user.email = self.cleaned_data["email"]
         if commit:

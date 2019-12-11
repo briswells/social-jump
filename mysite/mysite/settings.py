@@ -126,6 +126,8 @@ STATIC_URL = '/static/'
 
 ASGI_APPLICATION = 'mysite.routing.application'
 
+#Login Redirect
+LOGIN_REDIRECT_URL = '/'
 
 #channels
 CHANNEL_LAYERS = {

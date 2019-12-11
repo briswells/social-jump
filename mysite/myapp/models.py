@@ -9,13 +9,13 @@ class userExpanded(models.Model): #Adds on to default user class
     # roles = #some type
     gameSprite = models.ImageField(
         max_length=144,
-        upload_to='content/spites/%user',default = 'test'))
+        upload_to='content/spites/%user',default = 'test')
     Darkmode = models.BooleanField()
 
 class userContent(models.Model): #A social feed post
     author = models.ForeignKey(
         User, on_delete=models.CASCADE)#FK from pre built user class
-    post = models.CharField(max_length=500, ,default ='test')#
+    post = models.CharField(max_length=500, default ='test')#
     image = models.ImageField(
         max_length=144,
         upload_to='content/images/%Y/%m/%d/')
@@ -57,4 +57,3 @@ class gameStats(models.Model):
     time = models.DateTimeField(auto_now_add=True)
     score = models.IntegerField()
     timeJumped = models.IntegerField()
-
