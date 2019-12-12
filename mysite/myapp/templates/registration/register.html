@@ -1,25 +1,25 @@
 
 <!DOCTYPE html>
 <html>
-    
+
 <head>
     <title></title>
 </head>
-    
+
 <body>
     <form method="POST">
         {% csrf_token %} {{ form.as_p }}
         <button type="submit">Submit</button>
     </form>
 </body>
-    
+
 </html>
 
 <!-- {% block title %}Registration{% endblock %}
 {% block content %}
 <div class="grid-x grid-padding-x">
   <!-- <div class="large-4 medium-4 small-12 cell"></div> -->
-  <div class="large-4 medium-4 small-12 large-offset-4 medium-offset-4 cell">
+<!--  <div class="large-4 medium-4 small-12 large-offset-4 medium-offset-4 cell">
 
     <form action="/register/" method="post">
         {% csrf_token %}
@@ -38,4 +38,3 @@
   </div>
 </div>
 {% endblock %} -->
-

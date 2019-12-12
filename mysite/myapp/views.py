@@ -11,7 +11,7 @@ from . import forms
 from . import models
 
 # Create your views here.
-
+@login_required(login_url='/login/')
 def index(request, page=0):
     if request.method == "POST":
         if request.user.is_authenticated:
@@ -26,33 +26,35 @@ def index(request, page=0):
     else:
         form_instance = forms.postForm()
     posts = models.userContent.objects.all()
+    current_user = request.user.username
     # content_list = {"posts":[]}
     # for p_q in post_query:
-        # comment_query = models.Comment.objects.filter(ID=p_q)
-        # comment_list = []
-        # for c_q in comment_query:
-        #     can_delete=False
-        #     if request.user == c_q.author:
-        #         can_delete=True
-        #     comment_list += [{
-        #     "comment":c_q.comment,
-        #     "author":c_q.author.username,
-        #     "created_on":c_q.date,
-        #     "id":c_q.ID,
-        #     "delete":can_delete
-        #     }]
-        # content_list["post"] += [{
-        #     "id":p_q.id,
-        #     "post":p_q.post,
-        #     "author":p_q.username.username,
-        #     "created_on":p_q.date
-        #     # "comments":comment_list
-        #     }]
+    #     comment_query = models.Comment.objects.filter(ID=p_q)
+    #     comment_list = []
+    #     for c_q in comment_query:
+    #         can_delete=False
+    #         if request.user == c_q.author:
+    #             can_delete=True
+    #         comment_list += [{
+    #         "comment":c_q.comment,
+    #         "author":c_q.author.username,
+    #         "created_on":c_q.date,
+    #         "id":c_q.ID,
+    #         "delete":can_delete
+    #         }]
+    #     content_list["post"] += [{
+    #         "id":p_q.id,
+    #         "post":p_q.post,
+    #         "author":p_q.username.username,
+    #         "created_on":p_q.date
+    #         # "comments":comment_list
+    #         }]
     context = {
         "variable":"Hello World",
         "title":"Index",
         "form":form_instance,
-        "post_list":posts
+        "post_list":posts,
+        "user":current_user
     }
     return render(request, "base.html", context=context)
 
