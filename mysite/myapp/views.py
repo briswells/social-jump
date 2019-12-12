@@ -12,19 +12,22 @@ from . import models
 
 # Create your views here.
 @login_required(login_url='/login/')
-def index(request, page=0):
+def index(request):
     if request.method == "POST":
-        if request.user.is_authenticated:
-            form_instance = forms.postForm(request.POST)
-            if form_instance.is_valid():
-                new_sugg = models.userContent(post=form_instance.cleaned_data["post"])
-                new_sugg.username = request.user
-                new_sugg.save()
-                form_instance = forms.postForm()
+        form_instance = forms.postForm(request.POST)
+        if form_instance.is_valid():
+            post = form_instance.cleaned_data
+            new_post = models.userContent(author=post["username"], post=post["post"], image=post["image"], image_description=post["image_description"], date=post["date"])
+            print(post["post"])
+            print("testing1")
+            new_post.save()
+            form_instance = forms.postForm()
         else:
+            print("testing2")
             form_instance = forms.postForm()
     else:
         form_instance = forms.postForm()
+        print("testing3")
     posts = models.userContent.objects.all()
     current_user = request.user.username
     # content_list = {"posts":[]}
@@ -123,7 +126,7 @@ def test(request):
 
 
 def room(request,room_name):
-    return render(request,'chat/room.html',{
+    return render(request,'base.html',{
         'room_name_json': mark_safe(json.dumps(room_name))
     })
 
